@@ -1,0 +1,25 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+  govet:
+    disable-all: true
+    # Enable analyzers by name (in addition to default).
+    # Run `go tool vet help` to see all analyzers.
+    # Default: []
+    enable:
+      - printf
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - goimports
+    - gofmt
+    - govet
+    - staticcheck
+
+issues:
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
