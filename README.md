@@ -24,30 +24,75 @@ Microservice framework implemented based on Golang.
 ## Framework
 ```shell
 ├─api 存放与外部交互的接口及 proto 文件
+│  ├─metadata
 │  └─user
 │      └─v1
 ├─app 具体服务相关的实现
+│  ├─shop
+│  │  └─admin
+│  │      ├─config
+│  │      └─controller
 │  ├─pkg 服务共通的包
-│  │  └─code 服务的错误码
+│  │  ├─code 服务的错误码
+│  │  ├─options
+│  │  └─translator
+│  │      └─gin
 │  └─user 举例 user 服务
+│      ├─client
 │      └─srv
 │          ├─config 服务的配置项，Log error 等子服务的相关逻辑全部注册到配置中
-│          ├─controller  表示层
+│          ├─controller 表示层
 │          │  └─user
 │          ├─data 数据访问层：数据库，缓存，消息队列等，无业务逻辑
 │          │  └─v1
-│          │      ├─db
-│          │      └─mock
+│          │      ├─db 数据库相关的操作
+│          │      └─mock 数据库的 mock 用于测试
 │          └─service 业务逻辑层
-│              └─v1
+│          │   └─v1
+│          ├─app.go user 服务生成逻辑
+│          └─rpc.go user 模块的 rpc 服务 初始化逻辑
 ├─cmd 服务启动入口
+│  ├─admin
 │  └─user 启动示例 user 服务
 ├─configs 配置文件
-├─gmicro
+│  ├─admin
+│  └─user
+├─gmicro 微服务相关包
 │  ├─app 服务启动相关的结构体
-│  └─registry 服务实例注册信息相关结构体
+│  │  └─app.go 这个 app 是 GRPC，服务名称，注册中心等的集合
+│  ├─code
+│  ├─core
+│  │  ├─metric
+│  │  └─trace
+│  ├─registry
+│  │  └─consul 服务注册中心相关逻辑，参考 kratos
+│  └─server
+│      ├─restserver
+│      │  ├─middlewares
+│      │  │  └─auth
+│      │  ├─pprof
+│      │  └─validation
+│      └─rpcserver
+│          ├─clientinterceptors
+│          ├─resolver
+│          │  ├─direct
+│          │  └─discovery
+│          ├─selector
+│          │  ├─node
+│          │  │  ├─direct
+│          │  │  └─ewma
+│          │  ├─p2c
+│          │  ├─random
+│          │  └─wrr
+│          └─serverinterceptors
 ├─pkg
-│  ├─app
+│  ├─app 包括的项目的启动服务，配置文件的读取，命令行工具，以及其他选项
+│  │  ├─app.go 服务启动：命令行工具，日志，错误包，配置等
+│  │  ├─config.go 读取配置文件
+│  │  ├─flag.go 命令行工具
+│  │  ├─cmd.go 服务启动命令
+│  │  ├─options.go 服务启动选项
+│  │  └─help.go 帮助信息
 │  ├─common 共通相关的包
 │  │  ├─auth
 │  │  ├─cli
@@ -64,7 +109,7 @@ Microservice framework implemented based on Golang.
 │  │  ├─time
 │  │  ├─tools
 │  │  ├─util
-│  │  │  ├─clock  时间相关的工具
+│  │  │  ├─clock 时间相关的工具
 │  │  │  ├─fileutil
 │  │  │  ├─homedir
 │  │  │  ├─idutil
@@ -83,9 +128,10 @@ Microservice framework implemented based on Golang.
 │  │  └─version
 │  │      └─verflag
 │  ├─errors 基础的 error 包 可以单独使用
+│  ├─host
 │  └─log 基础的 error 包 可以单独使用
-└─tools 工具包
-	└─codegen errorCode 代码生成工具 
+└─tools
+    └─codegen errorCode 代码生成工具 
 ```
 
 

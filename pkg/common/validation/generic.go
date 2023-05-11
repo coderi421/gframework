@@ -7,7 +7,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/CoderI421/gmicro/pkg/common/validation/field"
+	"github.com/CoderI421/gframework/pkg/common/validation/field"
 )
 
 const (

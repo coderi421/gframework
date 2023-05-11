@@ -11,11 +11,11 @@ type ServiceInstance struct {
 	// service version
 	Version string `json:"version"`
 	// service metadata
-	Metadata map[string]interface{} `json:"metadata"`
+	Metadata map[string]string `json:"metadata"`
 
 	//http://127.0.0.1:8080
 	//grpc://127.0.0.1:9000
-	EndPoints []string `json:"endpoints"`
+	Endpoints []string `json:"endpoints"`
 }
 
 // Registrar is the interface that wraps the basic Register and Deregister method.
@@ -31,7 +31,7 @@ type Discovery interface {
 	// GetService gets the service instance by serviceName.
 	//	if the args is id, then get the only service instance by id.
 	//	if the args is name, then may get the many service instance by name, load balancing is variable.
-	GetService(ctx context.Context, serviceName string) (*ServiceInstance, error)
+	GetService(ctx context.Context, serviceName string) ([]*ServiceInstance, error)
 	// Watch creates the Watcher instance.
 	Watch(ctx context.Context, serviceName string) (Watcher, error)
 }

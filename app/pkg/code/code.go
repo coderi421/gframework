@@ -3,8 +3,8 @@ package code
 import (
 	"net/http"
 
-	"github.com/CoderI421/gmicro/pkg/common/util/sliceutil"
-	"github.com/CoderI421/gmicro/pkg/errors"
+	"github.com/CoderI421/gframework/pkg/common/util/sliceutil"
+	"github.com/CoderI421/gframework/pkg/errors"
 )
 
 type ErrCode struct {

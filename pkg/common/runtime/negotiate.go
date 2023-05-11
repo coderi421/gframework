@@ -3,7 +3,7 @@ package runtime
 import (
 	"fmt"
 
-	"github.com/CoderI421/gmicro/pkg/common/json"
+	"github.com/CoderI421/gframework/pkg/common/json"
 )
 
 // NegotiateError is returned when a ClientNegotiator is unable to locate

@@ -21,7 +21,6 @@ type Command struct {
 	runFunc  RunCommandFunc
 }
 
-// CommandOption defines optional parameters for initializing the command
 // structure.
 type CommandOption func(*Command)
 

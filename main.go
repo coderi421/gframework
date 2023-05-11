@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/CoderI421/gmicro/pkg/log"
+	"github.com/CoderI421/gframework/pkg/log"
 )
 
 func main() {

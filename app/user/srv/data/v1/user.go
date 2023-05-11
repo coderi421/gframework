@@ -3,7 +3,7 @@ package v1
 import (
 	"context"
 
-	metav1 "github.com/CoderI421/gmicro/pkg/common/meta/v1"
+	metav1 "github.com/CoderI421/gframework/pkg/common/meta/v1"
 )
 
 type UserDO struct {

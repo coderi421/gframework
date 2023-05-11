@@ -24,8 +24,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CoderI421/gmicro/pkg/common/util/clock"
-	"github.com/CoderI421/gmicro/pkg/common/util/runtime"
+	"github.com/CoderI421/gframework/pkg/common/util/clock"
+	"github.com/CoderI421/gframework/pkg/common/util/runtime"
 )
 
 // For any test of the style:

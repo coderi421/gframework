@@ -6,8 +6,8 @@ import (
 	"github.com/sony/sonyflake"
 	hashids "github.com/speps/go-hashids"
 
-	"github.com/CoderI421/gmicro/pkg/common/util/iputil"
-	"github.com/CoderI421/gmicro/pkg/common/util/stringutil"
+	"github.com/CoderI421/gframework/pkg/common/util/iputil"
+	"github.com/CoderI421/gframework/pkg/common/util/stringutil"
 )
 
 // Defiens alphabet.

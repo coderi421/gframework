@@ -5,7 +5,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/CoderI421/gmicro/gmicro/registry"
+	"github.com/CoderI421/gframework/gmicro/server/rpcserver"
+
+	"github.com/CoderI421/gframework/gmicro/registry"
 )
 
 type Option func(o *options)
@@ -20,10 +22,28 @@ type options struct {
 	sigs []os.Signal
 	// allow user to provide own implementation
 	registrarTimeout time.Duration
-	registrar        registry.Registrar
+	// the registry implementation of registry center
+	registrar registry.Registrar
 
 	// timeout for stopping the service
 	stopTimeout time.Duration
+
+	// rpc server instance
+	rpcServer *rpcserver.Server
+}
+
+// WithRegistrar allows user to provide own implementation of registry center
+func WithRegistrar(registrar registry.Registrar) Option {
+	return func(o *options) {
+		o.registrar = registrar
+	}
+}
+
+// WithRPCServer allows user to provide own implementation of rpc server
+func WithRPCServer(server *rpcserver.Server) Option {
+	return func(o *options) {
+		o.rpcServer = server
+	}
 }
 
 func WithName(name string) Option {

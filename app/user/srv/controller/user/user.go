@@ -1,8 +1,12 @@
 package user
 
-import srv1 "github.com/CoderI421/gmicro/app/user/srv/service/v1"
+import (
+	v1 "github.com/CoderI421/gframework/api/user/v1"
+	srv1 "github.com/CoderI421/gframework/app/user/srv/service/v1"
+)
 
 type userServer struct {
+	v1.UnimplementedUserServer
 	srv srv1.UserSrv
 }
 

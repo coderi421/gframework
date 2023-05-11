@@ -5,18 +5,18 @@ import (
 	"os"
 
 	//controller(参数校验) ->service(具体的业务逻辑) -> data(数据库的接口)
-	cliflag "github.com/CoderI421/gmicro/pkg/common/cli/flag"
-	"github.com/CoderI421/gmicro/pkg/common/cli/globalflag"
-	"github.com/CoderI421/gmicro/pkg/common/term"
-	"github.com/CoderI421/gmicro/pkg/common/version"
-	"github.com/CoderI421/gmicro/pkg/common/version/verflag"
-	"github.com/CoderI421/gmicro/pkg/errors"
+	cliflag "github.com/CoderI421/gframework/pkg/common/cli/flag"
+	"github.com/CoderI421/gframework/pkg/common/cli/globalflag"
+	"github.com/CoderI421/gframework/pkg/common/term"
+	"github.com/CoderI421/gframework/pkg/common/version"
+	"github.com/CoderI421/gframework/pkg/common/version/verflag"
+	"github.com/CoderI421/gframework/pkg/errors"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/CoderI421/gmicro/pkg/log"
+	"github.com/CoderI421/gframework/pkg/log"
 )
 
 var (

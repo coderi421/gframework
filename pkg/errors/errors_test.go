@@ -310,8 +310,8 @@ func TestParseCoder(t *testing.T) {
 		wantCode      int
 		wantReference string
 	}{
-		{fmt.Errorf("yes error"), 500, "An internal server error occurred", 1, "github.com/CoderI421/gmicro/pkg/errors/README.md"},
-		{WithCode(unknownCoder.Code(), "internal error message"), 500, "An internal server error occurred", 1, "github.com/CoderI421/gmicro/pkg/errors/README.md"},
+		{fmt.Errorf("yes error"), 500, "An internal server error occurred", 1, "github.com/CoderI421/gframework/pkg/errors/README.md"},
+		{WithCode(unknownCoder.Code(), "internal error message"), 500, "An internal server error occurred", 1, "github.com/CoderI421/gframework/pkg/errors/README.md"},
 	}
 
 	for i, tt := range tests {

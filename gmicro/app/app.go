@@ -2,19 +2,18 @@ package app
 
 import (
 	"context"
+	"net/url"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
 	"time"
 
-	"github.com/CoderI421/gmicro/pkg/log"
-
-	"github.com/CoderI421/gmicro/pkg/errors"
+	"github.com/CoderI421/gframework/pkg/log"
 
 	"github.com/google/uuid"
 
-	"github.com/CoderI421/gmicro/gmicro/registry"
+	"github.com/CoderI421/gframework/gmicro/registry"
 )
 
 type App struct {
@@ -35,7 +34,7 @@ func New(opts ...Option) *App {
 		stopTimeout:      10 * time.Second,
 	}
 	// generate default uuid for service instance
-	if id, err := uuid.NewUUID(); err != nil {
+	if id, err := uuid.NewUUID(); err == nil {
 		o.id = id.String()
 	}
 	// apply options
@@ -52,10 +51,22 @@ func (a *App) Run() error {
 	if err != nil {
 		return err
 	}
+
 	// lock the instance for concurrent safe, other goroutine may access it
 	a.mux.Lock()
 	a.instance = instance
 	a.mux.Unlock()
+
+	go func() {
+		// start the rpc server
+		if a.opts.rpcServer != nil {
+			err := a.opts.rpcServer.Start()
+			if err != nil {
+				log.Errorf("start rpc server error: %s", err)
+				return
+			}
+		}
+	}()
 
 	// register the service instance
 	if a.opts.registrar != nil {
@@ -97,20 +108,25 @@ func (a *App) Stop() error {
 
 // buildInstance create the service instance info
 func (a *App) buildInstance() (*registry.ServiceInstance, error) {
-	// if the endpoints is still empty, then return error
-	if len(a.opts.endpoints) == 0 {
-		return nil, errors.New("no endpoints available")
-	}
 	// build the service instance
 	i := &registry.ServiceInstance{
 		ID:   a.opts.id,
 		Name: a.opts.name,
 	}
-	endpoints := make([]string, len(a.opts.endpoints))
+	endpoints := make([]string, 0, len(a.opts.endpoints)+1)
 	for _, ep := range a.opts.endpoints {
-		endpoints = append(endpoints, ep.String())
+		if ep != nil {
+			endpoints = append(endpoints, ep.String())
+		}
 	}
-
+	//从rpcserver，restserver去主动获取这些信息
+	if a.opts.rpcServer != nil {
+		u := &url.URL{
+			Scheme: "grpc",
+			Host:   a.opts.rpcServer.Address(),
+		}
+		endpoints = append(endpoints, u.String())
+	}
 	// if the registry is empty, then use the default registry
 	//if a.opts.registrar == nil {
 	//	a.opts.registrar = a.opts.defaultRegistrar()
