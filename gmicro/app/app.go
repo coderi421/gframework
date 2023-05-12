@@ -109,10 +109,7 @@ func (a *App) Stop() error {
 // buildInstance create the service instance info
 func (a *App) buildInstance() (*registry.ServiceInstance, error) {
 	// build the service instance
-	i := &registry.ServiceInstance{
-		ID:   a.opts.id,
-		Name: a.opts.name,
-	}
+
 	endpoints := make([]string, 0, len(a.opts.endpoints)+1)
 	for _, ep := range a.opts.endpoints {
 		if ep != nil {
@@ -131,5 +128,9 @@ func (a *App) buildInstance() (*registry.ServiceInstance, error) {
 	//if a.opts.registrar == nil {
 	//	a.opts.registrar = a.opts.defaultRegistrar()
 	//}
-	return i, nil
+	return &registry.ServiceInstance{
+		ID:        a.opts.id,
+		Name:      a.opts.name,
+		Endpoints: endpoints,
+	}, nil
 }
