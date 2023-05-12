@@ -127,7 +127,7 @@ func WithOptions(opts ...grpc.ServerOption) ServerOption {
 
 // 完成ip和端口的提取
 func (s *Server) listenAndEndpoint() error {
-	if &s.lis == nil {
+	if s.lis == nil {
 		lis, err := net.Listen("tcp", s.address)
 		if err != nil {
 			return err
