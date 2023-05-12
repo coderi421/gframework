@@ -130,7 +130,7 @@ func dial(ctx context.Context, insecure bool, opts ...ClientOption) (*grpc.Clien
 		grpc.WithChainStreamInterceptor(streamInts...),
 	}
 
-	//服务发现的选项
+	//服务发现的选项 这里调用 resolver 的直连模式或者是服务发现模式
 	if &options.discovery != nil {
 		grpcOpts = append(grpcOpts, grpc.WithResolvers(
 			discovery.NewBuilder(options.discovery,

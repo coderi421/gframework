@@ -231,14 +231,15 @@ func (r *Registry) resolve(ctx context.Context, ss *serviceSet) error {
 	}
 
 	go func() {
+		// 长轮询的思想: 如果服务有变化, 则立即返回, 否则等待一段时间后返回, 以减少请求次数
 		ticker := time.NewTicker(time.Second)
 		defer ticker.Stop()
 		for {
 			select {
 			case <-ticker.C:
-				timeoutCtx, cancel := context.WithTimeout(context.Background(), r.timeout)
-				tmpService, tmpIdx, err := r.cli.Service(timeoutCtx, ss.serviceName, idx, true)
-				cancel()
+				timeoutContext, c := context.WithTimeout(context.Background(), r.timeout)
+				tmpService, tmpIdx, err := r.cli.Service(timeoutContext, ss.serviceName, idx, true)
+				c()
 				if err != nil {
 					time.Sleep(time.Second)
 					continue

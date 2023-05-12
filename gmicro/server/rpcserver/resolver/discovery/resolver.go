@@ -26,6 +26,7 @@ type discoveryResolver struct {
 }
 
 func (r *discoveryResolver) watch() {
+	// 轮询监听
 	for {
 		select {
 		case <-r.ctx.Done():
