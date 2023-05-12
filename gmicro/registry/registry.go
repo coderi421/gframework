@@ -1,6 +1,8 @@
 package registry
 
-import "context"
+import (
+	"context"
+)
 
 // ServiceInstance is the service instance for registry center.
 type ServiceInstance struct {

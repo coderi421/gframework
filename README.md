@@ -73,10 +73,14 @@ Microservice framework implemented based on Golang.
 │      │  ├─pprof
 │      │  └─validation
 │      └─rpcserver
-│          ├─clientinterceptors
-│          ├─resolver
-│          │  ├─direct
-│          │  └─discovery
+│          ├─client.go rpc 客户端的初始化配置
+│          ├─server.go rpc 服务端的初始化配置
+│          ├─clientinterceptors 客户端的拦截器：超时连接器
+│          ├─resolver 服务发现相关的逻辑 解析器
+│          │  ├─direct 直连
+│          │  └─discovery 服务发现，负载均衡
+│          │      ├─builder.go 服务发现的构建器
+│          │      └─resolver.go 服务发现的解析器,负载均衡的逻辑在这里实现 UpdateState 核心
 │          ├─selector
 │          │  ├─node
 │          │  │  ├─direct
@@ -84,7 +88,7 @@ Microservice framework implemented based on Golang.
 │          │  ├─p2c
 │          │  ├─random
 │          │  └─wrr
-│          └─serverinterceptors
+│          └─serverinterceptors 服务端的拦截器：超时，crash恢复
 ├─pkg
 │  ├─app 包括的项目的启动服务，配置文件的读取，命令行工具，以及其他选项
 │  │  ├─app.go 服务启动：命令行工具，日志，错误包，配置等

@@ -127,7 +127,7 @@ func WithOptions(opts ...grpc.ServerOption) ServerOption {
 
 // 完成ip和端口的提取
 func (s *Server) listenAndEndpoint() error {
-	if s.lis == nil {
+	if &s.lis == nil {
 		lis, err := net.Listen("tcp", s.address)
 		if err != nil {
 			return err
@@ -155,7 +155,7 @@ func (s *Server) Start() error {
 func (s *Server) Stop() error {
 	//设置服务的状态为not_serving 防止接受新的请求
 	s.health.Shutdown()
-	s.GracefulStop()
+	s.Server.GracefulStop()
 	log.Infof("[grpc] server stopped")
 	return nil
 }
