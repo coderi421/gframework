@@ -38,7 +38,7 @@ Microservice framework implemented based on Golang.
 │  │  └─translator
 │  │      └─gin
 │  └─user 举例 user 服务
-│      ├─client
+│      ├─client 用于本地测试 user 服务的客户端 rpc 服务
 │      └─srv
 │          ├─config 服务的配置项，Log error 等子服务的相关逻辑全部注册到配置中
 │          ├─controller 表示层
@@ -67,12 +67,12 @@ Microservice framework implemented based on Golang.
 │  ├─registry
 │  │  └─consul 服务注册中心相关逻辑，参考 kratos
 │  └─server
-│      ├─restserver
-│      │  ├─middlewares
+│      ├─restserver http 服务的初始化配置
+│      │  ├─middlewares http 服务的中间件
 │      │  │  └─auth
-│      │  ├─pprof
-│      │  └─validation
-│      └─rpcserver
+│      │  ├─pprof http 服务的 pprof 相关逻辑
+│      │  └─validation http 服务的参数校验
+│      └─rpcserver rpc 服务的初始化配置
 │          ├─client.go rpc 客户端的初始化配置
 │          ├─server.go rpc 服务端的初始化配置
 │          ├─clientinterceptors 客户端的拦截器：超时连接器
@@ -81,13 +81,13 @@ Microservice framework implemented based on Golang.
 │          │  └─discovery 服务发现，负载均衡
 │          │      ├─builder.go 服务发现的构建器
 │          │      └─resolver.go 服务发现的解析器,负载均衡的逻辑在这里实现 UpdateState 核心
-│          ├─selector
-│          │  ├─node
-│          │  │  ├─direct
-│          │  │  └─ewma
-│          │  ├─p2c
-│          │  ├─random
-│          │  └─wrr
+│          ├─selector 重写 grpc 接口，具体服务相关的实现 
+│          │  ├─node gRPC 服务节点
+│          │  │  ├─direct 直连节点
+│          │  │  └─ewma ewma算法节点，用于实现 p2c 负载均衡策略
+│          │  ├─p2c  负载均衡 [Power of Two Random Choices] 算法
+│          │  ├─random 负载均衡随机算法
+│          │  └─wrr 负载均衡 加权轮询 [Weighted Round Robin] 算法
 │          └─serverinterceptors 服务端的拦截器：超时，crash恢复
 ├─pkg
 │  ├─app 包括的项目的启动服务，配置文件的读取，命令行工具，以及其他选项

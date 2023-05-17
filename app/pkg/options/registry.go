@@ -12,6 +12,7 @@ type RegistryOptions struct {
 	Scheme string `json:"scheme" mapstructure:"scheme,omitempty"`
 }
 
+// NewRegistryOptions 创建一个默认注册中心的配置
 func NewRegistryOptions() *RegistryOptions {
 	return &RegistryOptions{
 		Address: "127.0.0.1:8500",

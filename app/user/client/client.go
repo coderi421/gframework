@@ -5,14 +5,21 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/consul/api"
-
 	v1 "github.com/CoderI421/gframework/api/user/v1"
 	"github.com/CoderI421/gframework/gmicro/registry/consul"
 	"github.com/CoderI421/gframework/gmicro/server/rpcserver"
+	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector"
+	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector/random"
+	"github.com/hashicorp/consul/api"
 )
 
 func main() {
+	//客户端，设置全局负载均衡策略，这里选择了 random
+	// 这个逻辑中，balancerName是selector,在 gmicro/server/rpcserver/balancer.go中规定的
+	selector.SetGlobalSelector(random.NewBuilder())
+	// selector.SetGlobalSelector(random.NewBuilder()) 设定的全局的 selector 然后这里，调用 selector 进行注册
+	rpcserver.InitBuilder()
+
 	conf := api.DefaultConfig()
 	conf.Address = "127.0.0.1:8500"
 	conf.Scheme = "http"
@@ -27,6 +34,7 @@ func main() {
 
 	conn, err := rpcserver.DialInsecure(
 		context.Background(), rpcserver.WithDiscovery(r),
+		rpcserver.WithBalancerName("selector"),
 		/*
 			第3个/是为了第二个参数是空的
 			默认格式：direct://<authority>/127.0.0.1:8078
@@ -42,9 +50,13 @@ func main() {
 	}
 	defer conn.Close()
 	uc := v1.NewUserClient(conn)
-	re, err := uc.GetUserList(context.Background(), &v1.PageInfo{})
-	if err != nil {
-		panic(err)
+	// 在终端中，使用 --server.port=*** --server.http-port 命令启动启动多个，这里就会轮询调用，测试负载均衡
+	for {
+		re, err := uc.GetUserList(context.Background(), &v1.PageInfo{})
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(re)
+		time.Sleep(time.Second * 5)
 	}
-	fmt.Println(re)
 }

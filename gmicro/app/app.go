@@ -58,7 +58,7 @@ func (a *App) Run() error {
 	a.mux.Unlock()
 
 	go func() {
-		// start the rpc server
+		// start the rpc server goroutine
 		if a.opts.rpcServer != nil {
 			err := a.opts.rpcServer.Start()
 			if err != nil {
