@@ -28,17 +28,17 @@ Microservice framework implemented based on Golang.
 │  └─user
 │      └─v1
 ├─app 具体服务相关的实现
-│  ├─shop
-│  │  └─admin
-│  │      ├─config
-│  │      └─controller
+│  ├─shop 举例 shop http 服务 同级的还可以创建其他文件夹
+│  │  └─admin shop 下的 admin 侧 http 服务 同级的还可以创建其他文件夹
+│  │      ├─config 配置文件
+│  │      └─controller 表示层
 │  ├─pkg 服务共通的包
 │  │  ├─code 服务的错误码
 │  │  ├─options
 │  │  └─translator
 │  │      └─gin
-│  └─user 举例 user 服务
-│      ├─client 用于本地测试 user 服务的客户端 rpc 服务
+│  └─user 举例 user gRPC 服务，可以同时建立 http 服务，参考 shop
+│      ├─client 用于本地测试 user rpc 服务的客户端
 │      └─srv
 │          ├─config 服务的配置项，Log error 等子服务的相关逻辑全部注册到配置中
 │          ├─controller 表示层

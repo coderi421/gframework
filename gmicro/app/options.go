@@ -5,6 +5,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/CoderI421/gframework/gmicro/server/restserver"
+
 	"github.com/CoderI421/gframework/gmicro/server/rpcserver"
 
 	"github.com/CoderI421/gframework/gmicro/registry"
@@ -30,6 +32,8 @@ type options struct {
 
 	// rpc server instance
 	rpcServer *rpcserver.Server
+	// rest server instance
+	restServer *restserver.Server
 }
 
 // WithRegistrar allows user to provide own implementation of registry center
@@ -43,6 +47,13 @@ func WithRegistrar(registrar registry.Registrar) Option {
 func WithRPCServer(server *rpcserver.Server) Option {
 	return func(o *options) {
 		o.rpcServer = server
+	}
+}
+
+// WithRestServer allows user to provide own implementation of rest server
+func WithRestServer(server *restserver.Server) Option {
+	return func(o *options) {
+		o.restServer = server
 	}
 }
 

@@ -1,0 +1,26 @@
+log:
+  name: shop-admin #logger的名称
+  development: true # 是否开启开发模式，开发模式下会打印调试信息，默认 false
+  level: debug # 日志级别，优先级从低到高依次为：debug, info, warn, error, dpanic, panic, fatal。
+  format: console # 支持的日志输出格式，目前支持console和json两种。console其实就是text格式。
+  enable-color: true # 是否开启颜色输出，true:是，false:否
+  disable-caller: false # 是否开启 caller，如果开启会在日志中显示调用日志所在的文件、函数和行号
+  disable-stacktrace: false # 是否再panic及以上级别禁止打印堆栈信息
+  output-paths: logs/shop-admin.log,stdout # 支持输出到多个输出，逗号分开。支持输出到标准输出（stdout）和文件。
+  error-output-paths: logs/shop-admin.error.log # zap内部(非业务)错误日志输出路径，多个输出，逗号分开
+
+registry:
+  address: 127.0.0.1:8500
+  scheme: http
+
+server:
+  name: shop-admin #服务名，注册到consul使用的名称
+  host: "127.0.0.1" #host, 默认使用 0.0.0.0
+  port: 8016 # grpc 安全模式的端口号，默认 8081
+  http-port: 8050
+  healthz: true # 是否开启健康检查，如果开启会安装 /healthz 路由，默认 true
+  enable-metrics: true # 开启 metrics, router:  /metrics
+  profiling: true # 开启性能分析, 可以通过 <host>:<port>/debug/pprof/地址查看程序栈、线程等系统信息，默认值为 true
+  middlewares: # 中间件
+    - recovery # panic 恢复
+    - cors # 跨域

@@ -1,6 +1,7 @@
 package rpcserver
 
 import (
+	"context"
 	"net"
 	"net/url"
 	"time"
@@ -143,7 +144,7 @@ func (s *Server) listenAndEndpoint() error {
 	return nil
 }
 
-func (s *Server) Start() error {
+func (s *Server) Start(ctx context.Context) error {
 	log.Infof("[grpc] server listening on: %s", s.lis.Addr().String())
 	//改grpc核心变量 状态
 	//只有.Resume()之后，请求才能进来
@@ -152,7 +153,7 @@ func (s *Server) Start() error {
 	return s.Server.Serve(s.lis)
 
 }
-func (s *Server) Stop() error {
+func (s *Server) Stop(ctx context.Context) error {
 	//设置服务的状态为not_serving 防止接受新的请求
 	s.health.Shutdown()
 	s.Server.GracefulStop()

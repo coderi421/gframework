@@ -36,7 +36,7 @@ func (c *Config) Flags() (fss cliflag.NamedFlagSets) {
 
 // Validate 将配置中的所有校验子逻辑 注册到当前实例的校验中
 func (c *Config) Validate() (errors []error) {
-	// 将 Log 中的校验，注册到 admin 服务的，校验逻辑中
+	// 将 Log 中的校验，注册到 user 服务的，校验逻辑中
 	errors = append(errors, c.Log.Validate()...)
 	errors = append(errors, c.Server.Validate()...)
 	errors = append(errors, c.Registry.Validate()...)
