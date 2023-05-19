@@ -138,5 +138,10 @@ Microservice framework implemented based on Golang.
     └─codegen errorCode 代码生成工具 
 ```
 
+## 命令行工具
+```shell
+# 查看帮助信息
+go run .\cmd\***\***.go --help
+```
 
 

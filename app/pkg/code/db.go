@@ -1,6 +1,6 @@
 package code
 
-//go:generate codeg -type=int -doc -output ./error_code_generated.md
+//go:generate codeg -type=int
 const (
 	// ErrConnectDB - 500: Init db error.
 	ErrConnectDB int = iota + 100601

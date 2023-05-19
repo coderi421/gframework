@@ -24,3 +24,4 @@ server:
   middlewares: # 中间件
     - recovery # panic 恢复
     - cors # 跨域
+    - context
