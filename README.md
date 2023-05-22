@@ -61,9 +61,9 @@ Microservice framework implemented based on Golang.
 │  ├─app 服务启动相关的结构体
 │  │  └─app.go 这个 app 是 GRPC，服务名称，注册中心等的集合
 │  ├─code
-│  ├─core
+│  ├─core 底层共通核心的包
 │  │  ├─metric
-│  │  └─trace
+│  │  └─trace 链路追踪，采用 opentemlemetry 
 │  ├─registry
 │  │  └─consul 服务注册中心相关逻辑，参考 kratos
 │  └─server

@@ -6,6 +6,8 @@ import (
 	"net/url"
 	"time"
 
+	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
+
 	"github.com/CoderI421/gframework/pkg/log"
 
 	apimd "github.com/CoderI421/gframework/api/metadata"
@@ -61,6 +63,7 @@ func NewServer(opts ...ServerOption) *Server {
 	//TODO 我们现在希望用户不设置拦截器的情况下，我们会自动默认加上一些必须的拦截器 , crash tracing
 	unaryInts := []grpc.UnaryServerInterceptor{
 		srvints.UnaryCrashInterceptor,
+		otelgrpc.UnaryServerInterceptor(), // 设置链路追踪的拦截器
 		//srvints.UnaryTimeoutInterceptor(srv.timeout),
 	}
 	//timeout可以交给用户设置，不设置就不用此拦截器
