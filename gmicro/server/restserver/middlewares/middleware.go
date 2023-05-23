@@ -9,5 +9,6 @@ func defaultMiddlewares() map[string]gin.HandlerFunc {
 		"recovery": gin.Recovery(),
 		"cors":     Cors(),
 		"context":  Context(),
+		"trace":    TracingHandler("gmicro"),
 	}
 }

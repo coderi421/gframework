@@ -48,6 +48,9 @@ type Server struct {
 	trans     ut.Translator
 	// 将 http.Server 作为作为 Server 的一个属性，为了重写 gin 的 Run 方法 实现后续的优雅推出
 	server *http.Server
+
+	//tracing 的服务名，默认为 restserver
+	serviceName string
 }
 
 func NewServer(opts ...ServerOption) *Server {

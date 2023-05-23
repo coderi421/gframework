@@ -10,6 +10,12 @@ func WithEnableProfiling(profiling bool) ServerOption {
 	}
 }
 
+func WithServiceName(srvName string) ServerOption {
+	return func(s *Server) {
+		s.serviceName = srvName
+	}
+}
+
 func WithMode(mode string) ServerOption {
 	return func(s *Server) {
 		s.mode = mode
