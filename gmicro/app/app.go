@@ -92,7 +92,8 @@ func (a *App) Run() error {
 	wg := sync.WaitGroup{}
 
 	for _, srv := range servers {
-
+		// 修正 range 中的变量问题, 传递给goroutine的参数, 不能直接传递srv, 因为srv是一个变量, 会被修改
+		srv := srv
 		// 启动一个goroutine 监听是否有服务在启动过程中存在失败的情况
 		errGroup.Go(func() error {
 			<-ctx.Done()
