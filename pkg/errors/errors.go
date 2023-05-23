@@ -159,6 +159,19 @@ func FromGrpcError(e error) error {
 	}
 }
 
+func FromGrpcErrorCode(e error) int {
+	if e == nil {
+		return 100002
+	}
+
+	st, ok := status.FromError(e)
+	if !ok {
+		return 100002
+	}
+
+	return int(st.Code())
+}
+
 func ToGrpcError(e error) error {
 	if e == nil {
 		return e

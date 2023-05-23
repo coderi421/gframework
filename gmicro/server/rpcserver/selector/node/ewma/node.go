@@ -8,9 +8,11 @@ import (
 	"sync/atomic"
 	"time"
 
+	"google.golang.org/grpc/codes"
+
 	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector"
 
-	"github.com/go-kratos/kratos/v2/errors"
+	"github.com/CoderI421/gframework/pkg/errors"
 )
 
 const (
@@ -164,7 +166,7 @@ func (n *Node) Pick() selector.DoneFunc {
 					success = 0
 				}
 			} else if errors.Is(context.DeadlineExceeded, di.Err) || errors.Is(context.Canceled, di.Err) ||
-				errors.IsServiceUnavailable(di.Err) || errors.IsGatewayTimeout(di.Err) {
+				errors.FromGrpcErrorCode(di.Err) == int(codes.Unavailable) || errors.FromGrpcErrorCode(di.Err) == int(codes.DeadlineExceeded) {
 				success = 0
 			}
 		}
