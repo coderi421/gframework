@@ -50,7 +50,9 @@ func main() {
 	}
 	defer conn.Close()
 	uc := v1.NewUserClient(conn)
-	// 在终端中，使用 --server.port=*** --server.http-port 命令启动启动多个，这里就会轮询调用，测试负载均衡
+
+	// 测试 grpc 服务的负载均衡用例
+	// 在终端中，使用 --server.port=*** --server.http-port -c configs/user/srv.yaml 命令启动启动多个，这里就会轮询调用，测试负载均衡
 	for {
 		re, err := uc.GetUserList(context.Background(), &v1.PageInfo{})
 		if err != nil {

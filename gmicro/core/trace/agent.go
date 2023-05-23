@@ -22,8 +22,10 @@ const (
 
 var (
 	// struct{}空结构体 不占内存，zerobase
+	// 这个map的作用是，记录已经初始化过的endpoint，避免重复初始化
 	agents = make(map[string]struct{})
-	lock   sync.Mutex
+	// 保证map的并发安全
+	lock sync.Mutex
 )
 
 func InitAgent(o Options) {
