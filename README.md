@@ -24,7 +24,7 @@ Microservice framework implemented based on Golang.
 ## Framework
 ```shell
 ├─api 存放与外部交互的接口及 proto 文件
-│  ├─metadata
+│  ├─metadata 引用 kratos 发现所有 gRPC 服务接口
 │  └─user
 │      └─v1
 ├─app 具体服务相关的实现
@@ -52,7 +52,7 @@ Microservice framework implemented based on Golang.
 │          ├─app.go user 服务生成逻辑
 │          └─rpc.go user 模块的 rpc 服务 初始化逻辑
 ├─cmd 服务启动入口
-│  ├─admin
+│  ├─admin 启动示例 admin 服务
 │  └─user 启动示例 user 服务
 ├─configs 配置文件
 │  ├─admin
@@ -60,7 +60,7 @@ Microservice framework implemented based on Golang.
 ├─gmicro 微服务相关包
 │  ├─app 服务启动相关的结构体
 │  │  └─app.go 这个 app 是 GRPC，服务名称，注册中心等的集合
-│  ├─code
+│  ├─code 有一些公用的错误码
 │  ├─core 底层共通核心的包
 │  │  ├─metric
 │  │  └─trace 链路追踪，采用 opentemlemetry 
@@ -69,7 +69,7 @@ Microservice framework implemented based on Golang.
 │  └─server
 │      ├─restserver http 服务的初始化配置
 │      │  ├─middlewares http 服务的中间件
-│      │  │  ├─auth
+│      │  │  ├─auth 认证相关中间件，包括 jwt，cache，basic
 │      │  │  └─tracing.go 只是向gin中封装了 jeager 的 span 的相关信息，待上报的时候，才能入库
 │      │  ├─pprof http 服务的 pprof 相关逻辑
 │      │  └─validation http 服务的参数校验
@@ -100,9 +100,9 @@ Microservice framework implemented based on Golang.
 │  │  └─help.go 帮助信息
 │  ├─common 共通相关的包
 │  │  ├─auth
-│  │  ├─cli
+│  │  ├─cli 命令行工具相关的包
 │  │  │  ├─flag
-│  │  │  └─globalflag
+│  │  │  └─globalflag 全局命令行工具
 │  │  ├─core
 │  │  ├─json
 │  │  ├─meta
@@ -130,7 +130,7 @@ Microservice framework implemented based on Golang.
 │  │  │  └─wait
 │  │  ├─validation
 │  │  │  └─field
-│  │  └─version
+│  │  └─version 服务的版本号
 │  │      └─verflag
 │  ├─errors 基础的 error 包 可以单独使用
 │  ├─host

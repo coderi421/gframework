@@ -9,15 +9,11 @@ import (
 	"syscall"
 	"time"
 
-	"golang.org/x/sync/errgroup"
-
-	"github.com/CoderI421/gframework/gmicro/server"
-
-	"github.com/CoderI421/gframework/pkg/log"
-
-	"github.com/google/uuid"
-
 	"github.com/CoderI421/gframework/gmicro/registry"
+	"github.com/CoderI421/gframework/gmicro/server"
+	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/google/uuid"
+	"golang.org/x/sync/errgroup"
 )
 
 type App struct {
