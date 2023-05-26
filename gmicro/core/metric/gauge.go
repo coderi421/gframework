@@ -7,8 +7,10 @@ type (
 
 	GaugeVec interface {
 		Set(v float64, labels ...string) // Set 设置标签
-		Inc(labels ...string)            // Inc 增加标签
-		Add(v float64, labels ...string) // Add 添加标签
+		Inc(labels ...string)            // Inc 增加1标签
+		Dec(labels ...string)            // Dec 减少1标签
+		Add(v float64, labels ...string) // Add 添加任意值标签
+		Sub(v float64, labels ...string) // Sub 减少任意标签
 	}
 
 	promGaugeVec struct {
@@ -34,14 +36,22 @@ func NewGaugeVec(cfg *GaugeVecOpts) GaugeVec {
 	return &promGaugeVec{gauge: vec}
 }
 
-func (p promGaugeVec) Set(v float64, labels ...string) {
+func (p *promGaugeVec) Set(v float64, labels ...string) {
 	p.gauge.WithLabelValues(labels...).Set(v)
 }
 
-func (p promGaugeVec) Inc(labels ...string) {
+func (p *promGaugeVec) Inc(labels ...string) {
 	p.gauge.WithLabelValues(labels...).Inc()
 }
 
-func (p promGaugeVec) Add(v float64, labels ...string) {
+func (p *promGaugeVec) Dec(labels ...string) {
+	p.gauge.WithLabelValues(labels...).Dec()
+}
+
+func (p *promGaugeVec) Add(v float64, labels ...string) {
 	p.gauge.WithLabelValues(labels...).Add(v)
+}
+
+func (p *promGaugeVec) Sub(v float64, labels ...string) {
+	p.gauge.WithLabelValues(labels...).Sub(v)
 }
