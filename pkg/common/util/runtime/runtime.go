@@ -17,6 +17,7 @@ limitations under the License.
 package runtime
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 	"runtime"
@@ -85,14 +86,28 @@ func logPanic(r interface{}) {
 // should be packaged up into a testable and reusable object.
 var ErrorHandlers = []func(error){
 	logError,
-	(&rudimentaryErrorBackoff{
-		lastErrorTime: time.Now(),
-		// 1ms was the number folks were able to stomach as a global rate limit.
-		// If you need to log errors more than 1000 times a second you
-		// should probably consider fixing your code instead. :)
-		minPeriod: time.Millisecond,
-	}).OnError,
+	func(err error) {
+		(&rudimentaryErrorBackoff{
+			lastErrorTime: time.Now(),
+			// 1ms was the number folks were able to stomach as a global rate limit.
+			// If you need to log errors more than 1000 times a second you
+			// should probably consider fixing your code instead. :)
+			minPeriod: time.Millisecond,
+		}).OnError(errors.New("error occurred ErrorHandlers"))
+	},
 }
+
+//备用：
+//var ErrorHandlers = []func(error){
+//	logError,
+//	(&rudimentaryErrorBackoff{
+//		lastErrorTime: time.Now(),
+//		// 1ms was the number folks were able to stomach as a global rate limit.
+//		// If you need to log errors more than 1000 times a second you
+//		// should probably consider fixing your code instead. :)
+//		minPeriod: time.Millisecond,
+//	}).OnError,
+//}
 
 // HandlerError is a method to invoke when a non-user facing piece of code cannot
 // return an error and needs to indicate it has been ignored. Invoking this method
