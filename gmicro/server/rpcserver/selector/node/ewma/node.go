@@ -166,7 +166,7 @@ func (n *Node) Pick() selector.DoneFunc {
 					success = 0
 				}
 			} else if errors.Is(context.DeadlineExceeded, di.Err) || errors.Is(context.Canceled, di.Err) ||
-				errors.FromGrpcErrorCode(di.Err) == int(codes.Unavailable) || errors.FromGrpcErrorCode(di.Err) == int(codes.DeadlineExceeded) {
+				errors.FromGrpcErrorCode(di.Err) == codes.Unavailable || errors.FromGrpcErrorCode(di.Err) == codes.DeadlineExceeded {
 				success = 0
 			}
 		}

@@ -198,9 +198,11 @@ func (a *App) buildInstance() (*registry.ServiceInstance, error) {
 	//if a.opts.registrar == nil {
 	//	a.opts.registrar = a.opts.defaultRegistrar()
 	//}
+	//这的地方的 Metadata 有一个功能是 加权负载均衡用的
 	return &registry.ServiceInstance{
 		ID:        a.opts.id,
 		Name:      a.opts.name,
 		Endpoints: endpoints,
+		//Metadata: map[string]string{"weight": "20"},
 	}, nil
 }

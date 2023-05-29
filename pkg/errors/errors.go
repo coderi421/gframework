@@ -159,7 +159,7 @@ func FromGrpcError(e error) error {
 	}
 }
 
-func FromGrpcErrorCode(e error) int {
+func FromGrpcErrorCode(e error) gCode.Code {
 	if e == nil {
 		return 100002
 	}
@@ -169,7 +169,7 @@ func FromGrpcErrorCode(e error) int {
 		return 100002
 	}
 
-	return int(st.Code())
+	return st.Code()
 }
 
 func ToGrpcError(e error) error {

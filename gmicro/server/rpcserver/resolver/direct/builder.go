@@ -16,7 +16,7 @@ func init() {
 NewBuilder creates a directBuilder which is used to factory direct resolvers.
 example:
 
-	direct://<authority>/127.0.0.1:9000
+	direct://<authority>/127.0.0.1:9000,127.0.0.2:9000
 
 到达这样一个目的
 */
