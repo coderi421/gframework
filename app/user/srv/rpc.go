@@ -29,7 +29,10 @@ func NewUserRPCServer(cfg *config.Config) (*rpcserver.Server, error) {
 	userver := user.NewUserServer(srv)
 
 	rpcAddr := fmt.Sprintf("%s:%d", cfg.Server.Host, cfg.Server.Port)
-	urpcServer := rpcserver.NewServer(rpcserver.WithAddress(rpcAddr))
+	urpcServer := rpcserver.NewServer(
+		rpcserver.WithAddress(rpcAddr),
+		rpcserver.WithEnableMetric(cfg.Server.EnableMetrics),
+	)
 
 	// 注册 user 模块的 rpc 服务
 	upbv1.RegisterUserServer(urpcServer.Server, userver)

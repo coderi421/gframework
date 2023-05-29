@@ -55,3 +55,9 @@ func WithCustomMiddlewares(middlewares []gin.HandlerFunc) ServerOption {
 		s.customMiddlewares = middlewares
 	}
 }
+
+func WithMetrics(metrics bool) ServerOption {
+	return func(s *Server) {
+		s.enableMetrics = metrics
+	}
+}

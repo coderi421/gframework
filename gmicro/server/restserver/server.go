@@ -11,9 +11,9 @@ import (
 	"github.com/CoderI421/gframework/gmicro/server/restserver/validation"
 	"github.com/CoderI421/gframework/pkg/errors"
 	"github.com/CoderI421/gframework/pkg/log"
-
 	"github.com/gin-gonic/gin"
 	ut "github.com/go-playground/universal-translator"
+	"github.com/penglongli/gin-metrics/ginmetrics"
 )
 
 type JwtInfo struct {
@@ -38,6 +38,8 @@ type Server struct {
 	healthz bool
 	//是否开启pprof接口，默认开启,如果开启会自动添加/debug/pprof接口
 	enableProfiling bool
+	//是否开启metrics接口，默认开启，如果开启会自动添加/metrics接口
+	enableMetrics bool
 	//中间件(拦截器)两种用法 1.提前写好，直接配置名称就可以，用起来方便，比rpc自定义的实现弱，2.自定义gin.HandlerFunc
 	middlewares       []string
 	customMiddlewares []gin.HandlerFunc
@@ -111,6 +113,20 @@ func (s *Server) Start(ctx context.Context) error {
 	//根据配置初始化pprof路由
 	if s.enableProfiling {
 		pprof.Register(s.Engine)
+	}
+	//根据配置初始化metrics路由
+	if s.enableMetrics {
+		// get global Monitor object
+		m := ginmetrics.GetMonitor()
+		// +optional set metric path, default /debug/metrics
+		m.SetMetricPath("/metrics")
+		// +optional set slow time, default 5s
+		m.SetSlowTime(10)
+		// +optional set request duration, default {0.1, 0.3, 1.2, 5, 10}
+		// used to p95, p99
+		m.SetDuration([]float64{0.1, 0.3, 1.2, 5, 10})
+		//反向注入
+		m.Use(s)
 	}
 
 	// 如果开启了健康检查接口，就添加/health接口

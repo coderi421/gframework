@@ -18,6 +18,8 @@ func NewUserHTTPServer(conf *config.Config) (*restserver.Server, error) {
 		restserver.WithPort(conf.Server.HttpPort),
 		restserver.WithEnableProfiling(true),
 		restserver.WithMiddlewares(conf.Server.Middlewares),
+		restserver.WithEnableProfiling(true),
+		restserver.WithMetrics(true),
 	)
 	//_ = tracerProvider()
 

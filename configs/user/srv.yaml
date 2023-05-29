@@ -13,6 +13,16 @@ registry:
   address: 127.0.0.1:8500
   scheme: http
 
+server:
+  name: user-srv #服务名，注册到consul使用的名称
+  limit: true
+  host: "127.0.0.1" #host, 默认使用 0.0.0.0
+  port: 8078 # grpc 安全模式的端口号，默认 8081
+  http-port: 8088
+  healthz: true # 是否开启健康检查，如果开启会安装 /healthz 路由，默认 true
+  enable-metrics: true # 开启 metrics, router:  /metrics
+  profiling: true # 开启性能分析, 可以通过 <host>:<port>/debug/pprof/地址查看程序栈、线程等系统信息，默认值为 true
+
 telemetry:
   Name: user-srv
   Endpoint: http://127.0.0.1:14268/api/traces

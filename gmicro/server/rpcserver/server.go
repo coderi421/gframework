@@ -44,6 +44,9 @@ type Server struct {
 	metadata *apimd.Server
 	//设置监听的ip port
 	endpoint *url.URL
+
+	//是否开启 metric 监测
+	enableMetric bool
 }
 
 func (s *Server) Address() string {
@@ -64,7 +67,9 @@ func NewServer(opts ...ServerOption) *Server {
 	unaryInts := []grpc.UnaryServerInterceptor{
 		srvints.UnaryCrashInterceptor,
 		otelgrpc.UnaryServerInterceptor(), // 设置链路追踪的拦截器
-		//srvints.UnaryTimeoutInterceptor(srv.timeout),
+	}
+	if srv.enableMetric {
+		unaryInts = append(unaryInts, srvints.UnaryServerPrometheusInterceptor)
 	}
 	//timeout可以交给用户设置，不设置就不用此拦截器
 	if srv.timeout > 0 {
@@ -99,34 +104,25 @@ func NewServer(opts ...ServerOption) *Server {
 }
 
 func WithAddress(address string) ServerOption {
-	return func(s *Server) {
-		s.address = address
-	}
+	return func(s *Server) { s.address = address }
 }
 func WithTimeout(timeout time.Duration) ServerOption {
-	return func(s *Server) {
-		s.timeout = timeout
-	}
+	return func(s *Server) { s.timeout = timeout }
 }
 func WithLis(lis net.Listener) ServerOption {
-	return func(s *Server) {
-		s.lis = lis
-	}
+	return func(s *Server) { s.lis = lis }
 }
 func WithUnaryInterceptor(in ...grpc.UnaryServerInterceptor) ServerOption {
-	return func(s *Server) {
-		s.unaryInts = in
-	}
+	return func(s *Server) { s.unaryInts = in }
 }
 func WithStreamInterceptor(in ...grpc.StreamServerInterceptor) ServerOption {
-	return func(s *Server) {
-		s.streamInts = in
-	}
+	return func(s *Server) { s.streamInts = in }
 }
 func WithOptions(opts ...grpc.ServerOption) ServerOption {
-	return func(s *Server) {
-		s.grpcOpts = opts
-	}
+	return func(s *Server) { s.grpcOpts = opts }
+}
+func WithEnableMetric(enable bool) ServerOption {
+	return func(s *Server) { s.enableMetric = enable }
 }
 
 // 完成ip和端口的提取
