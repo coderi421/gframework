@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/CoderI421/gframework/pkg/errors"
+	"github.com/coderi421/gframework/pkg/errors"
 
 	"github.com/gin-gonic/gin"
 )

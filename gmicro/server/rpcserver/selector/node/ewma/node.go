@@ -10,9 +10,9 @@ import (
 
 	"google.golang.org/grpc/codes"
 
-	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector"
+	"github.com/coderi421/gframework/gmicro/server/rpcserver/selector"
 
-	"github.com/CoderI421/gframework/pkg/errors"
+	"github.com/coderi421/gframework/pkg/errors"
 )
 
 const (

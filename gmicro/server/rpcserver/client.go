@@ -7,9 +7,9 @@ import (
 	"google.golang.org/grpc"
 	grpcinsecure "google.golang.org/grpc/credentials/insecure"
 
-	"github.com/CoderI421/gframework/gmicro/registry"
-	"github.com/CoderI421/gframework/gmicro/server/rpcserver/resolver/discovery"
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/gmicro/registry"
+	"github.com/coderi421/gframework/gmicro/server/rpcserver/resolver/discovery"
+	"github.com/coderi421/gframework/pkg/log"
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 )
 

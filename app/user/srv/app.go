@@ -3,13 +3,13 @@ package srv
 import (
 	"github.com/hashicorp/consul/api"
 
-	"github.com/CoderI421/gframework/app/pkg/options"
-	"github.com/CoderI421/gframework/app/user/srv/config"
-	gapp "github.com/CoderI421/gframework/gmicro/app"
-	"github.com/CoderI421/gframework/gmicro/registry"
-	"github.com/CoderI421/gframework/gmicro/registry/consul"
-	"github.com/CoderI421/gframework/pkg/app"
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/app/pkg/options"
+	"github.com/coderi421/gframework/app/user/srv/config"
+	gapp "github.com/coderi421/gframework/gmicro/app"
+	"github.com/coderi421/gframework/gmicro/registry"
+	"github.com/coderi421/gframework/gmicro/registry/consul"
+	"github.com/coderi421/gframework/pkg/app"
+	"github.com/coderi421/gframework/pkg/log"
 )
 
 func NewApp(basename string) *app.App {

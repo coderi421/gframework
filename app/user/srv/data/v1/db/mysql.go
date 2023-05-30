@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/CoderI421/gframework/app/pkg/code"
-	"github.com/CoderI421/gframework/app/pkg/options"
-	"github.com/CoderI421/gframework/pkg/errors"
+	"github.com/coderi421/gframework/app/pkg/code"
+	"github.com/coderi421/gframework/app/pkg/options"
+	"github.com/coderi421/gframework/pkg/errors"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

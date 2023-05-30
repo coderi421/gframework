@@ -26,8 +26,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/CoderI421/gframework/pkg/common/util/clock"
-	"github.com/CoderI421/gframework/pkg/common/util/runtime"
+	"github.com/coderi421/gframework/pkg/common/util/clock"
+	"github.com/coderi421/gframework/pkg/common/util/runtime"
 )
 
 func TestUntil(t *testing.T) {

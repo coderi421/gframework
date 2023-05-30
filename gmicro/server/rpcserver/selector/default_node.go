@@ -3,7 +3,7 @@ package selector
 import (
 	"strconv"
 
-	"github.com/CoderI421/gframework/gmicro/registry"
+	"github.com/coderi421/gframework/gmicro/registry"
 )
 
 // DefaultNode is selector node

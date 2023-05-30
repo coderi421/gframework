@@ -16,4 +16,4 @@ limitations under the License.
 
 // Package wait provides tools for polling or listening for changes
 // to a condition.
-package wait // import "github.com/CoderI421/gframework/pkg/common/util/wait"
+package wait // import "github.com/coderi421/gframework/pkg/common/util/wait"

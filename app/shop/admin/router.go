@@ -1,8 +1,8 @@
 package admin
 
 import (
-	"github.com/CoderI421/gframework/app/shop/admin/controller"
-	"github.com/CoderI421/gframework/gmicro/server/restserver"
+	"github.com/coderi421/gframework/app/shop/admin/controller"
+	"github.com/coderi421/gframework/gmicro/server/restserver"
 )
 
 func initRouter(g *restserver.Server) {

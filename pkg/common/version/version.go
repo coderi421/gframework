@@ -8,7 +8,7 @@ import (
 
 	"github.com/gosuri/uitable"
 
-	"github.com/CoderI421/gframework/pkg/common/json"
+	"github.com/coderi421/gframework/pkg/common/json"
 )
 
 var (

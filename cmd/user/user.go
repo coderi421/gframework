@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/CoderI421/gframework/app/user/srv"
+	"github.com/coderi421/gframework/app/user/srv"
 )
 
 func main() {

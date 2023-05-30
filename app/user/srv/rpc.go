@@ -3,17 +3,17 @@ package srv
 import (
 	"fmt"
 
-	"github.com/CoderI421/gframework/app/user/srv/data/v1/db"
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/app/user/srv/data/v1/db"
+	"github.com/coderi421/gframework/pkg/log"
 
-	"github.com/CoderI421/gframework/gmicro/core/trace"
+	"github.com/coderi421/gframework/gmicro/core/trace"
 
-	upbv1 "github.com/CoderI421/gframework/api/user/v1"
-	srv1 "github.com/CoderI421/gframework/app/user/srv/service/v1"
+	upbv1 "github.com/coderi421/gframework/api/user/v1"
+	srv1 "github.com/coderi421/gframework/app/user/srv/service/v1"
 
-	"github.com/CoderI421/gframework/app/user/srv/config"
-	"github.com/CoderI421/gframework/app/user/srv/controller/user"
-	"github.com/CoderI421/gframework/gmicro/server/rpcserver"
+	"github.com/coderi421/gframework/app/user/srv/config"
+	"github.com/coderi421/gframework/app/user/srv/controller/user"
+	"github.com/coderi421/gframework/gmicro/server/rpcserver"
 )
 
 func NewUserRPCServer(cfg *config.Config) (*rpcserver.Server, error) {

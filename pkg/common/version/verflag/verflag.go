@@ -9,7 +9,7 @@ import (
 
 	flag "github.com/spf13/pflag"
 
-	"github.com/CoderI421/gframework/pkg/common/version"
+	"github.com/coderi421/gframework/pkg/common/version"
 )
 
 type versionValue int

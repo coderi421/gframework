@@ -32,7 +32,7 @@ func TestFrameFormat(t *testing.T) {
 	}, {
 		initpc,
 		"%+s",
-		"github.com/CoderI421/gframework/pkg/errors.init\n" +
+		"github.com/coderi421/gframework/pkg/errors.init\n" +
 			"\t.+/gmicro/pkg/errors/stack_test.go",
 	}, {
 		0,
@@ -79,7 +79,7 @@ func TestFrameFormat(t *testing.T) {
 	}, {
 		initpc,
 		"%+v",
-		"github.com/CoderI421/gframework/pkg/errors.init\n" +
+		"github.com/coderi421/gframework/pkg/errors.init\n" +
 			"\t.+/gmicro/pkg/errors/stack_test.go:9",
 	}, {
 		0,
@@ -98,7 +98,7 @@ func TestFuncname(t *testing.T) {
 	}{
 		{"", ""},
 		{"runtime.main", "main"},
-		{"github.com/CoderI421/gframework/pkg/errors.funcname", "funcname"},
+		{"github.com/coderi421/gframework/pkg/errors.funcname", "funcname"},
 		{"funcname", "funcname"},
 		{"io.copyBuffer", "copyBuffer"},
 		{"main.(*R).Write", "(*R).Write"},
@@ -119,24 +119,24 @@ func TestStackTrace(t *testing.T) {
 		want []string
 	}{{
 		New("ooh"), []string{
-			"github.com/CoderI421/gframework/pkg/errors.TestStackTrace\n" +
+			"github.com/coderi421/gframework/pkg/errors.TestStackTrace\n" +
 				"\t.+/gmicro/pkg/errors/stack_test.go:121",
 		},
 	}, {
 		Wrap(New("ooh"), "ahh"), []string{
-			"github.com/CoderI421/gframework/pkg/errors.TestStackTrace\n" +
+			"github.com/coderi421/gframework/pkg/errors.TestStackTrace\n" +
 				"\t.+/gmicro/pkg/errors/stack_test.go:126", // this is the stack of Wrap, not New
 		},
 	}, {
 		Cause(Wrap(New("ooh"), "ahh")), []string{
-			"github.com/CoderI421/gframework/pkg/errors.TestStackTrace\n" +
+			"github.com/coderi421/gframework/pkg/errors.TestStackTrace\n" +
 				"\t.+/gmicro/pkg/errors/stack_test.go:131", // this is the stack of New
 		},
 	}, {
 		func() error { return New("ooh") }(), []string{
-			`github.com/CoderI421/gframework/pkg/errors.TestStackTrace.func1` +
+			`github.com/coderi421/gframework/pkg/errors.TestStackTrace.func1` +
 				"\n\t.+/gmicro/pkg/errors/stack_test.go:136", // this is the stack of New
-			"github.com/CoderI421/gframework/pkg/errors.TestStackTrace\n" +
+			"github.com/coderi421/gframework/pkg/errors.TestStackTrace\n" +
 				"\t.+/gmicro/pkg/errors/stack_test.go:136", // this is the stack of New's caller
 		},
 	}, {
@@ -145,11 +145,11 @@ func TestStackTrace(t *testing.T) {
 				return Errorf("hello %s", fmt.Sprintf("world: %s", "ooh"))
 			}()
 		}()), []string{
-			`github.com/CoderI421/gframework/pkg/errors.TestStackTrace.func2.1` +
+			`github.com/coderi421/gframework/pkg/errors.TestStackTrace.func2.1` +
 				"\n\t.+/gmicro/pkg/errors/stack_test.go:145", // this is the stack of Errorf
-			`github.com/CoderI421/gframework/pkg/errors.TestStackTrace.func2` +
+			`github.com/coderi421/gframework/pkg/errors.TestStackTrace.func2` +
 				"\n\t.+/gmicro/pkg/errors/stack_test.go:146", // this is the stack of Errorf's caller
-			"github.com/CoderI421/gframework/pkg/errors.TestStackTrace\n" +
+			"github.com/coderi421/gframework/pkg/errors.TestStackTrace\n" +
 				"\t.+/gmicro/pkg/errors/stack_test.go:147", // this is the stack of Errorf's caller's caller
 		},
 	}}
@@ -225,9 +225,9 @@ func TestStackTraceFormat(t *testing.T) {
 		stackTrace()[:2],
 		"%+v",
 		"\n" +
-			"github.com/CoderI421/gframework/pkg/errors.stackTrace\n" +
+			"github.com/coderi421/gframework/pkg/errors.stackTrace\n" +
 			"\t.+/gmicro/pkg/errors/stack_test.go:174\n" +
-			"github.com/CoderI421/gframework/pkg/errors.TestStackTraceFormat\n" +
+			"github.com/coderi421/gframework/pkg/errors.TestStackTraceFormat\n" +
 			"\t.+/gmicro/pkg/errors/stack_test.go:225",
 	}, {
 		stackTrace()[:2],

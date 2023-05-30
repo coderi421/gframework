@@ -3,9 +3,9 @@ package gin
 import (
 	"strings"
 
-	"github.com/CoderI421/gframework/app/pkg/code"
-	"github.com/CoderI421/gframework/pkg/common/core"
-	"github.com/CoderI421/gframework/pkg/errors"
+	"github.com/coderi421/gframework/app/pkg/code"
+	"github.com/coderi421/gframework/pkg/common/core"
+	"github.com/coderi421/gframework/pkg/errors"
 
 	"github.com/gin-gonic/gin"
 	ut "github.com/go-playground/universal-translator"

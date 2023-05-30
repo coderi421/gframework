@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/pkg/log"
 	"go.opentelemetry.io/otel/trace"
 
 	"github.com/gin-gonic/gin"

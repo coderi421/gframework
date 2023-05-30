@@ -6,7 +6,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/pkg/log"
 )
 
 func StreamCrashInterceptor(svr interface{}, stream grpc.ServerStream, _ *grpc.StreamServerInfo,

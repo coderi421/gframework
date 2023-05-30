@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/CoderI421/gframework/gmicro/core/metric"
+	"github.com/coderi421/gframework/gmicro/core/metric"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/status"
 )

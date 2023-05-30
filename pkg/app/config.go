@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/CoderI421/gframework/pkg/common/util/homedir"
+	"github.com/coderi421/gframework/pkg/common/util/homedir"
 
 	"github.com/gosuri/uitable"
 	"github.com/spf13/cobra"

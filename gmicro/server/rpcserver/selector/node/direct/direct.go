@@ -5,7 +5,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector"
+	"github.com/coderi421/gframework/gmicro/server/rpcserver/selector"
 )
 
 const (

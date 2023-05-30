@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/CoderI421/gframework/gmicro/code"
-	"github.com/CoderI421/gframework/gmicro/server/restserver/middlewares"
-	"github.com/CoderI421/gframework/pkg/common/core"
+	"github.com/coderi421/gframework/gmicro/code"
+	"github.com/coderi421/gframework/gmicro/server/restserver/middlewares"
+	"github.com/coderi421/gframework/pkg/common/core"
 
-	"github.com/CoderI421/gframework/pkg/errors"
+	"github.com/coderi421/gframework/pkg/errors"
 
 	jwt "github.com/dgrijalva/jwt-go/v4"
 	"github.com/gin-gonic/gin"

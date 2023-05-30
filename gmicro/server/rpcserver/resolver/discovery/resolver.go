@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/CoderI421/gframework/gmicro/registry"
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/gmicro/registry"
+	"github.com/coderi421/gframework/pkg/log"
 
 	"google.golang.org/grpc/attributes"
 	"google.golang.org/grpc/resolver"

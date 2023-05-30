@@ -1,5 +1,5 @@
 //nolint:unparam
-module github.com/CoderI421/gframework
+module github.com/coderi421/gframework
 
 go 1.19
 

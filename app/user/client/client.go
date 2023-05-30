@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"time"
 
-	v1 "github.com/CoderI421/gframework/api/user/v1"
-	"github.com/CoderI421/gframework/gmicro/registry/consul"
-	"github.com/CoderI421/gframework/gmicro/server/rpcserver"
-	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector"
-	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector/random"
+	v1 "github.com/coderi421/gframework/api/user/v1"
+	"github.com/coderi421/gframework/gmicro/registry/consul"
+	"github.com/coderi421/gframework/gmicro/server/rpcserver"
+	"github.com/coderi421/gframework/gmicro/server/rpcserver/selector"
+	"github.com/coderi421/gframework/gmicro/server/rpcserver/selector/random"
 	"github.com/hashicorp/consul/api"
 )
 
@@ -54,7 +54,10 @@ func main() {
 	// 测试 grpc 服务的负载均衡用例
 	// 在终端中，使用 --server.port=*** --server.http-port -c configs/user/srv.yaml 命令启动启动多个，这里就会轮询调用，测试负载均衡
 	for {
-		re, err := uc.GetUserList(context.Background(), &v1.PageInfo{})
+		re, err := uc.GetUserList(context.Background(), &v1.PageInfo{
+			Pn:    1,
+			PSize: 4,
+		})
 		if err != nil {
 			panic(err)
 		}

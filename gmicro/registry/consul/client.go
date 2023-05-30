@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/CoderI421/gframework/gmicro/registry"
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/gmicro/registry"
+	"github.com/coderi421/gframework/pkg/log"
 	"github.com/hashicorp/consul/api"
 )
 

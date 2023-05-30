@@ -3,7 +3,7 @@ package trace
 import (
 	"sync"
 
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/pkg/log"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"

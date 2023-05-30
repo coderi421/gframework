@@ -1,8 +1,8 @@
 package user
 
 import (
-	v1 "github.com/CoderI421/gframework/api/user/v1"
-	srv1 "github.com/CoderI421/gframework/app/user/srv/service/v1"
+	v1 "github.com/coderi421/gframework/api/user/v1"
+	srv1 "github.com/coderi421/gframework/app/user/srv/service/v1"
 )
 
 type userServer struct {

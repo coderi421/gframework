@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"github.com/CoderI421/gframework/gmicro/server/restserver/middlewares"
+	"github.com/coderi421/gframework/gmicro/server/restserver/middlewares"
 
 	ginjwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"

@@ -3,7 +3,7 @@ package selector
 import (
 	"context"
 
-	"github.com/CoderI421/gframework/pkg/errors"
+	"github.com/coderi421/gframework/pkg/errors"
 )
 
 // ErrNoAvailable is no available node.

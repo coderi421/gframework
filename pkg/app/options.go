@@ -1,7 +1,7 @@
 package app
 
 import (
-	cliflag "github.com/CoderI421/gframework/pkg/common/cli/flag"
+	cliflag "github.com/coderi421/gframework/pkg/common/cli/flag"
 )
 
 // CliOptions abstracts configuration options for reading parameters from the

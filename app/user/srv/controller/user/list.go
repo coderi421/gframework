@@ -3,9 +3,9 @@ package user
 import (
 	"context"
 
-	upbv1 "github.com/CoderI421/gframework/api/user/v1"
-	srvv1 "github.com/CoderI421/gframework/app/user/srv/service/v1"
-	metav1 "github.com/CoderI421/gframework/pkg/common/meta/v1"
+	upbv1 "github.com/coderi421/gframework/api/user/v1"
+	srvv1 "github.com/coderi421/gframework/app/user/srv/service/v1"
+	metav1 "github.com/coderi421/gframework/pkg/common/meta/v1"
 )
 
 func DTOToResponse(userdto srvv1.UserDTO) upbv1.UserInfoResponse {

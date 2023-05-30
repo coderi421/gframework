@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CoderI421/gframework/pkg/errors"
+	"github.com/coderi421/gframework/pkg/errors"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

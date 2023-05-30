@@ -1,8 +1,8 @@
 package admin
 
 import (
-	"github.com/CoderI421/gframework/app/shop/admin/config"
-	"github.com/CoderI421/gframework/gmicro/server/restserver"
+	"github.com/coderi421/gframework/app/shop/admin/config"
+	"github.com/coderi421/gframework/gmicro/server/restserver"
 )
 
 // NewUserHTTPServer 创建一个http server

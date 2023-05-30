@@ -10,7 +10,7 @@ import (
 
 	"github.com/hashicorp/consul/api"
 
-	"github.com/CoderI421/gframework/gmicro/registry"
+	"github.com/coderi421/gframework/gmicro/registry"
 )
 
 func tcpServer(lis net.Listener) {

@@ -8,11 +8,11 @@ import (
 
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/pkg/log"
 
-	apimd "github.com/CoderI421/gframework/api/metadata"
-	srvints "github.com/CoderI421/gframework/gmicro/server/rpcserver/serverinterceptors"
-	"github.com/CoderI421/gframework/pkg/host"
+	apimd "github.com/coderi421/gframework/api/metadata"
+	srvints "github.com/coderi421/gframework/gmicro/server/rpcserver/serverinterceptors"
+	"github.com/coderi421/gframework/pkg/host"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	"google.golang.org/grpc/health/grpc_health_v1"

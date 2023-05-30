@@ -6,9 +6,9 @@ package wrr
 //	"reflect"
 //	"testing"
 //
-//	"github.com/CoderI421/gframework/gmicro/server/rpcserver/registry"
-//	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector"
-//	"github.com/CoderI421/gframework/gmicro/server/rpcserver/selector/filter"
+//	"github.com/coderi421/gframework/gmicro/server/rpcserver/registry"
+//	"github.com/coderi421/gframework/gmicro/server/rpcserver/selector"
+//	"github.com/coderi421/gframework/gmicro/server/rpcserver/selector/filter"
 //)
 //
 //func TestWrr(t *testing.T) {

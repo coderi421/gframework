@@ -5,8 +5,8 @@ import (
 
 	"gorm.io/gorm"
 
-	dv1 "github.com/CoderI421/gframework/app/user/srv/data/v1"
-	metav1 "github.com/CoderI421/gframework/pkg/common/meta/v1"
+	dv1 "github.com/coderi421/gframework/app/user/srv/data/v1"
+	metav1 "github.com/coderi421/gframework/pkg/common/meta/v1"
 )
 
 type user struct {

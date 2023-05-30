@@ -1,10 +1,10 @@
 package config
 
 import (
-	"github.com/CoderI421/gframework/app/pkg/options"
-	"github.com/CoderI421/gframework/pkg/app"
-	cliflag "github.com/CoderI421/gframework/pkg/common/cli/flag"
-	"github.com/CoderI421/gframework/pkg/log"
+	"github.com/coderi421/gframework/app/pkg/options"
+	"github.com/coderi421/gframework/pkg/app"
+	cliflag "github.com/coderi421/gframework/pkg/common/cli/flag"
+	"github.com/coderi421/gframework/pkg/log"
 )
 
 var _ app.CliOptions = &Config{}
