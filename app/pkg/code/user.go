@@ -20,4 +20,7 @@ const (
 
 	// ErrCodeInCorrect - 400: Sms code incorrect.
 	ErrCodeInCorrect
+
+	// ErrCodeInvalidParam - 400: Invalid param.
+	ErrCodeInvalidParam
 )

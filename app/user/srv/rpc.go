@@ -3,6 +3,9 @@ package srv
 import (
 	"fmt"
 
+	"github.com/CoderI421/gframework/app/user/srv/data/v1/db"
+	"github.com/CoderI421/gframework/pkg/log"
+
 	"github.com/CoderI421/gframework/gmicro/core/trace"
 
 	upbv1 "github.com/CoderI421/gframework/api/user/v1"
@@ -10,7 +13,6 @@ import (
 
 	"github.com/CoderI421/gframework/app/user/srv/config"
 	"github.com/CoderI421/gframework/app/user/srv/controller/user"
-	"github.com/CoderI421/gframework/app/user/srv/data/v1/mock"
 	"github.com/CoderI421/gframework/gmicro/server/rpcserver"
 )
 
@@ -24,7 +26,13 @@ func NewUserRPCServer(cfg *config.Config) (*rpcserver.Server, error) {
 		Batcher:  cfg.Telemetry.Batcher,
 	})
 
-	data := mock.NewUsers()
+	//data := mock.NewUsers()
+
+	gormDB, err := db.GetDBFactoryOr(cfg.MySQLOptions)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	data := db.NewUser(gormDB)
 	srv := srv1.NewUserService(data)
 	userver := user.NewUserServer(srv)
 

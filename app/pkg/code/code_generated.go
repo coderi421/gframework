@@ -23,4 +23,5 @@ func init() {
 	register(ErrSmsSend, 400, "Send sms error")
 	register(ErrCodeNotExist, 400, "Sms code incorrect or expired")
 	register(ErrCodeInCorrect, 400, "Sms code incorrect")
+	register(ErrCodeInvalidParam, 400, "Invalid param")
 }

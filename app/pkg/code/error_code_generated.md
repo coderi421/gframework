@@ -38,4 +38,5 @@
 | ErrSmsSend | 100404 | 400 | Send sms error |
 | ErrCodeNotExist | 100405 | 400 | Sms code incorrect or expired |
 | ErrCodeInCorrect | 100406 | 400 | Sms code incorrect |
+| ErrCodeInvalidParam | 100407 | 400 | Invalid param |
 

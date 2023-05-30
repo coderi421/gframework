@@ -11,10 +11,11 @@ var _ app.CliOptions = &Config{}
 
 func New() *Config {
 	return &Config{
-		Log:       log.NewOptions(),
-		Server:    options.NewServerOptions(),
-		Registry:  options.NewRegistryOptions(),
-		Telemetry: options.NewTelemetryOptions(),
+		Log:          log.NewOptions(),
+		Server:       options.NewServerOptions(),
+		Registry:     options.NewRegistryOptions(),
+		Telemetry:    options.NewTelemetryOptions(),
+		MySQLOptions: options.NewMySQLOptions(),
 	}
 }
 
@@ -25,7 +26,8 @@ type Config struct {
 	// 注册中心
 	Registry *options.RegistryOptions `json:"registry" mapstructure:"registry"`
 	//	链路追踪
-	Telemetry *options.TelemetryOptions `json:"telemetry" mapstructure:"telemetry"`
+	Telemetry    *options.TelemetryOptions `json:"telemetry" mapstructure:"telemetry"`
+	MySQLOptions *options.MySQLOptions     `json:"mysql" mapstructure:"mysql"`
 }
 
 // Flags implements app.CliOptions interface.Add flags to the specified FlagSet object.
@@ -35,6 +37,7 @@ func (c *Config) Flags() (fss cliflag.NamedFlagSets) {
 	c.Server.AddFlags(fss.FlagSet("server"))
 	c.Registry.AddFlags(fss.FlagSet("registry"))
 	c.Telemetry.AddFlags(fss.FlagSet("telemetry"))
+	c.MySQLOptions.AddFlags(fss.FlagSet("mysql"))
 	return fss
 }
 
@@ -45,5 +48,6 @@ func (c *Config) Validate() (errors []error) {
 	errors = append(errors, c.Server.Validate()...)
 	errors = append(errors, c.Registry.Validate()...)
 	errors = append(errors, c.Telemetry.Validate()...)
+	errors = append(errors, c.MySQLOptions.Validate()...)
 	return
 }

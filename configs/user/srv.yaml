@@ -28,3 +28,14 @@ telemetry:
   Endpoint: http://127.0.0.1:14268/api/traces
   Sampler: 1.0
   Bathcer: jaeger
+
+mysql:
+  host: "127.0.0.1" # MySQL 机器 ip，默认 127.0.0.1
+  port: "3306"
+  password: "123456" # MySQL 用户密码
+  username: "root" # MySQL 用户名(建议授权最小权限集)
+  database: "shopping_go" # iam 系统所用的数据库名
+  max-idle-connections: 100 # MySQL 最大空闲连接数，默认 100
+  max-open-connections: 100 # MySQL 最大打开的连接数，默认 100
+  max-connection-life-time: 10s # 空闲连接最大存活时间，默认 10s
+  log-level: 4 # GORM log level, 1: silent, 2:error, 3:warn, 4:info
