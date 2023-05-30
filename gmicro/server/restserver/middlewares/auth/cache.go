@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/dgrijalva/jwt-go"
+
 	"github.com/coderi421/gframework/gmicro/code"
 	"github.com/coderi421/gframework/gmicro/server/restserver/middlewares"
 	"github.com/coderi421/gframework/pkg/common/core"
 
 	"github.com/coderi421/gframework/pkg/errors"
 
-	jwt "github.com/dgrijalva/jwt-go/v4"
 	"github.com/gin-gonic/gin"
 )
 
@@ -82,7 +83,7 @@ func (cache CacheStrategy) AuthFunc() gin.HandlerFunc {
 			}
 
 			return []byte(secret.Key), nil
-		}, jwt.WithAudience(AuthzAudience))
+		})
 		if err != nil || !parsedT.Valid {
 			core.WriteResponse(c, errors.WithCode(code.ErrSignatureInvalid, err.Error()), nil)
 			c.Abort()
