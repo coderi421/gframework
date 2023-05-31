@@ -21,8 +21,24 @@
 
 | Identifier | Code | HTTP Code | Description |
 | ---------- | ---- | --------- | ----------- |
-| ErrConnectDB | 100601 | 500 | Init db error |
-| ErrConnectGRPC | 100602 | 500 | Connect to grpc error |
+| ErrEncrypt | 100201 | 401 | Error occurred while encrypting the user password |
+| ErrSignatureInvalid | 100202 | 401 | Signature is invalid |
+| ErrExpired | 100203 | 401 | Token expired |
+| ErrInvalidAuthHeader | 100204 | 401 | Invalid authorization header |
+| ErrMissingHeader | 100205 | 401 | The `Authorization` header was empty |
+| ErrPasswordIncorrect | 100206 | 401 | Password was incorrect |
+| ErrPermissionDenied | 100207 | 403 | Permission denied |
+| ErrEncodingFailed | 100301 | 500 | Encoding failed due to an error with the data |
+| ErrDecodingFailed | 100302 | 500 | Decoding failed due to an error with the data |
+| ErrInvalidJSON | 100303 | 500 | Data is not valid JSON |
+| ErrEncodingJSON | 100304 | 500 | JSON data could not be encoded |
+| ErrDecodingJSON | 100305 | 500 | JSON data could not be decoded |
+| ErrInvalidYaml | 100306 | 500 | Data is not valid Yaml |
+| ErrEncodingYaml | 100307 | 500 | Yaml data could not be encoded |
+| ErrDecodingYaml | 100308 | 500 | Yaml data could not be decoded |
+| ErrDatabase | 100101 | 500 | Database error |
+| ErrConnectDB | 100102 | 500 | Init db error |
+| ErrConnectGRPC | 100103 | 500 | Connect to grpc error |
 | ErrGoodsNotFound | 100501 | 404 | Goods not found |
 | ErrCategoryNotFound | 100502 | 404 | Category not found |
 | ErrEsUnmarshal | 100503 | 500 | Es unmarshal error |

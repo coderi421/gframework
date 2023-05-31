@@ -1,14 +1,12 @@
 package auth
 
 import (
+	"net/http"
 	"strings"
 
 	"github.com/coderi421/gframework/pkg/common/core"
 
-	"github.com/coderi421/gframework/gmicro/code"
 	"github.com/coderi421/gframework/gmicro/server/restserver/middlewares"
-
-	"github.com/coderi421/gframework/pkg/errors"
 
 	"github.com/gin-gonic/gin"
 )
@@ -39,11 +37,15 @@ func (a AutoStrategy) AuthFunc() gin.HandlerFunc {
 		authHeader := strings.SplitN(c.Request.Header.Get("Authorization"), " ", 2)
 
 		if len(authHeader) != authHeaderCount {
-			core.WriteResponse(
-				c,
-				errors.WithCode(code.ErrInvalidAuthHeader, "Authorization header format is wrong."),
-				nil,
-			)
+			//core.WriteResponse(
+			//	c,
+			//	errors.WithCode(code.ErrInvalidAuthHeader, "Authorization header format is wrong."),
+			//	nil,
+			//)
+
+			c.JSON(http.StatusUnauthorized, core.ErrResponse{
+				Message: "Invalid authorization header.",
+			})
 			c.Abort()
 
 			return
@@ -56,7 +58,10 @@ func (a AutoStrategy) AuthFunc() gin.HandlerFunc {
 			operator.SetStrategy(a.jwt)
 			// a.JWT.MiddlewareFunc()(c)
 		default:
-			core.WriteResponse(c, errors.WithCode(code.ErrSignatureInvalid, "unrecognized Authorization header."), nil)
+			//core.WriteResponse(c, errors.WithCode(code.ErrSignatureInvalid, "unrecognized Authorization header."), nil)
+			c.JSON(http.StatusUnauthorized, core.ErrResponse{
+				Message: "unrecognized Authorization header.",
+			})
 			c.Abort()
 
 			return

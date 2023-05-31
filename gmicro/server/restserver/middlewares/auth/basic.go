@@ -2,14 +2,12 @@ package auth
 
 import (
 	"encoding/base64"
+	"net/http"
 	"strings"
 
 	"github.com/coderi421/gframework/pkg/common/core"
 
-	"github.com/coderi421/gframework/gmicro/code"
 	"github.com/coderi421/gframework/gmicro/server/restserver/middlewares"
-
-	"github.com/coderi421/gframework/pkg/errors"
 
 	"github.com/gin-gonic/gin"
 )
@@ -32,13 +30,16 @@ func NewBasicStrategy(compare func(username string, password string) bool) Basic
 func (b BasicStrategy) AuthFunc() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		auth := strings.SplitN(c.Request.Header.Get("Authorization"), " ", 2)
-
 		if len(auth) != 2 || auth[0] != "Basic" {
-			core.WriteResponse(
-				c,
-				errors.WithCode(code.ErrSignatureInvalid, "Authorization header format is wrong."),
-				nil,
-			)
+			//core.WriteResponse(
+			//	c,
+			//	errors.WithCode(code.ErrSignatureInvalid, "Authorization header format is wrong."),
+			//	nil,
+			//)
+
+			c.JSON(http.StatusUnauthorized, core.ErrResponse{
+				Message: "Authorization header format is wrong.",
+			})
 			c.Abort()
 
 			return
@@ -49,11 +50,14 @@ func (b BasicStrategy) AuthFunc() gin.HandlerFunc {
 
 		//在这一步实现自己注入的compare
 		if len(pair) != 2 || !b.compare(pair[0], pair[1]) {
-			core.WriteResponse(
-				c,
-				errors.WithCode(code.ErrSignatureInvalid, "Authorization header format is wrong."),
-				nil,
-			)
+			//core.WriteResponse(
+			//	c,
+			//	errors.WithCode(code.ErrSignatureInvalid, "Authorization header format is wrong."),
+			//	nil,
+			//)
+			c.JSON(http.StatusUnauthorized, core.ErrResponse{
+				Message: "Authorization header format is wrong.",
+			})
 			c.Abort()
 
 			return

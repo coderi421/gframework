@@ -2,11 +2,11 @@ package auth
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go/v4"
 
-	"github.com/coderi421/gframework/gmicro/code"
 	"github.com/coderi421/gframework/gmicro/server/restserver/middlewares"
 	"github.com/coderi421/gframework/pkg/common/core"
 	"github.com/coderi421/gframework/pkg/errors"
@@ -46,7 +46,10 @@ func (cache CacheStrategy) AuthFunc() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		header := c.Request.Header.Get("Authorization")
 		if len(header) == 0 {
-			core.WriteResponse(c, errors.WithCode(code.ErrMissingHeader, "Authorization header cannot be empty."), nil)
+			//core.WriteResponse(c, errors.WithCode(code.ErrMissingHeader, "Authorization header cannot be empty."), nil)
+			c.JSON(http.StatusUnauthorized, core.ErrResponse{
+				Message: "Authorization header cannot be empty.",
+			})
 			c.Abort()
 
 			return
@@ -84,7 +87,10 @@ func (cache CacheStrategy) AuthFunc() gin.HandlerFunc {
 			return []byte(secret.Key), nil
 		}, jwt.WithAudience(AuthzAudience))
 		if err != nil || !parsedT.Valid {
-			core.WriteResponse(c, errors.WithCode(code.ErrSignatureInvalid, err.Error()), nil)
+			c.JSON(http.StatusUnauthorized, core.ErrResponse{
+				Message: err.Error(),
+			})
+			//core.WriteResponse(c, errors.WithCode(code.ErrSignatureInvalid, err.Error()), nil)
 			c.Abort()
 
 			return
@@ -92,7 +98,10 @@ func (cache CacheStrategy) AuthFunc() gin.HandlerFunc {
 
 		if KeyExpired(secret.Expires) {
 			tm := time.Unix(secret.Expires, 0).Format("2006-01-02 15:04:05")
-			core.WriteResponse(c, errors.WithCode(code.ErrExpired, "expired at: %s", tm), nil)
+			c.JSON(http.StatusUnauthorized, core.ErrResponse{
+				Message: fmt.Sprintf("expired at: %s", tm),
+			})
+			//core.WriteResponse(c, errors.WithCode(code.ErrExpired, "expired at: %s", tm), nil)
 			c.Abort()
 
 			return
