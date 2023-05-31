@@ -12,8 +12,10 @@ const (
 func Context() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//从c中获取到ip地址
-		//TODO 自己扩展
-		//c.Set(UserIP, c.GetString(UsernameKey))
+		ip := c.ClientIP()
+
+		// 向 gin context 注入 ip 地址
+		c.Set(UserIP, ip)
 		c.Next()
 	}
 }
