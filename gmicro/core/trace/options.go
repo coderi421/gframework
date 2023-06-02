@@ -1,5 +1,7 @@
 package trace
 
+//const TraceName = "gmicro"
+
 // Options 这个配置和 业务中 app 中的 tracing 冗余，为的是将 tracing 从业务中解耦出来
 type Options struct {
 	Name     string  `json:"name"`     // jeager 名称

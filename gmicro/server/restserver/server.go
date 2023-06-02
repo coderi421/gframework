@@ -63,7 +63,7 @@ func NewServer(opts ...ServerOption) *Server {
 		jwt: &JwtInfo{
 			"JWT",
 			"Gd%YCfP1agNHo5x6xm2Qs33Bf!B#Gi!o",
-			7 * 24 * time.Hour,
+			1 * 24 * time.Hour,
 			7 * 24 * time.Hour,
 		},
 		Engine:    gin.Default(),
