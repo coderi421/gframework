@@ -1,5 +1,5 @@
 # gmicro
-Microservice framework implemented based on Golang.
+Microservice framework implemented based on Golang~~
 
 ## Features
 微服务框架：
