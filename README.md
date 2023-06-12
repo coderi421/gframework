@@ -69,7 +69,8 @@ Microservice framework implemented based on Golang~~
 │  └─server
 │      ├─restserver http 服务的初始化配置
 │      │  ├─middlewares http 服务的中间件
-│      │  │  ├─auth 认证相关中间件，包括 jwt，cache，basic
+│      │  │  ├─auth 认证相关中间件，包括 jwt，cache，basic  这里是校验认证的中间件
+│      │  │  ├─jwt.go 生成token的中间件
 │      │  │  └─tracing.go 只是向gin中封装了 jeager 的 span 的相关信息，待上报的时候，才能入库
 │      │  ├─pprof http 服务的 pprof 相关逻辑
 │      │  └─validation http 服务的参数校验
