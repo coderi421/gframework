@@ -55,6 +55,9 @@ type Server struct {
 	serviceName string
 }
 
+func (s *Server) Translator() ut.Translator {
+	return s.trans
+}
 func NewServer(opts ...ServerOption) *Server {
 	srv := &Server{
 		port:    8080,
